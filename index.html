@@ -4,164 +4,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ดิจิทัลปัญญาประดิษฐ์แบบรู้สร้าง</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>วิทยาการคำนวณ ม.3 OS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&family=Sarabun:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="logo">GenAI History</div>
-            <ul>
-                <li><a href="#hero">หน้าแรก</a></li>
-                <li><a href="#about">เกี่ยวกับ</a></li>
-                <li><a href="#education">การศึกษา</a></li>
-                <li><a href="#history">ประวัติ AI</a></li>
-                <li><a href="quiz.html">แบบทดสอบ</a></li>
-                <li><a href="#contact">ติดต่อ</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h1>ดิจิทัลปัญญาประดิษฐ์แบบรู้สร้าง</h1>
-                <p class="subtitle">Generative AI: The Future of Creation</p>
-                <p class="description">สำรวจโลกแห่งปัญญาประดิษฐ์ที่สามารถสร้างสรรค์สิ่งใหม่
-                    และเรียนรู้ประวัติศาสตร์ความเป็นมาของเทคโนโลยีเปลี่ยนโลก</p>
-                <a href="#history" class="cta-button">เรียนรู้ประวัติ AI</a>
-            </div>
-            <div class="hero-visual">
-                <div class="glowing-orb"></div>
-            </div>
-        </section>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div id="welcome-text">Welcome</div>
+        <div class="loading-content hidden-initially">
+            <div class="apple-spinner"></div>
+            <div id="loading-text">0%</div>
+        </div>
+    </div>
 
-        <section id="about" class="content-section">
-            <div class="container">
-                <h2>Generative AI คืออะไร?</h2>
-                <p>Generative AI หรือ "ปัญญาประดิษฐ์แบบรู้สร้าง" คือแขนงหนึ่งของ AI
-                    ที่มีความสามารถในการสร้างเนื้อหาใหม่ๆ ไม่ว่าจะเป็นข้อความ รูปภาพ เสียง หรือแม้แต่วิดีโอ
-                    โดยเรียนรู้จากข้อมูลจำนวนมหาศาล</p>
-                <img src="123.png" alt="Generative AI Illustration" class="about-image">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>สร้างสรรค์ (Creation)</h3>
-                        <p>สร้างผลงานใหม่ที่ไม่เคยมีมาก่อน</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>เรียนรู้ (Learning)</h3>
-                        <p>เข้าใจบริบทและรูปแบบจากข้อมูล</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>ประยุกต์ (Application)</h3>
-                        <p>ใช้งานได้หลากหลายอุตสาหกรรม</p>
+    <!-- Audio Element -->
+    <audio id="ui-click-sound" preload="auto">
+        <source src="Kingdom%20Hearts%20Sound%20Effects%20%20Select.mp3" type="audio/mp3">
+    </audio>
+    <audio id="ui-mute-sound" preload="auto">
+        <source src="se00000%2310.wav" type="audio/wav">
+    </audio>
+    <audio id="ui-close-sound" preload="auto">
+        <source src="se00000%2326.wav" type="audio/wav">
+    </audio>
+    <audio id="ui-hover-sound" preload="auto">
+        <source src="se00000%2323.wav" type="audio/wav">
+    </audio>
+
+    <!-- Top Bar (Status Bar) -->
+    <div class="top-bar hidden-initially">
+        <div class="left-items">
+            <span class="apple-logo"><i class="fa-brands fa-apple"></i></span>
+            <span class="app-name">Computing Science M.3</span>
+        </div>
+        <div class="right-items">
+            <button id="theme-toggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
+            <span id="clock">12:00</span>
+        </div>
+    </div>
+
+    <!-- Desktop Area -->
+    <div id="desktop" class="hidden-initially">
+        <!-- Window: Home / About -->
+        <div class="window active" id="win-home" style="top: 10%; left: 10%;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-home')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Home</div>
+            </div>
+            <div class="window-content">
+                <div class="profile-section">
+                    <img src="https://ui-avatars.com/api/?name=C+S&background=random&size=128" alt="Profile"
+                        class="profile-pic">
+                    <h1>ยินดีต้อนรับสู่<br>วิทยาการคำนวณ ม.3</h1>
+                    <p>เรียนรู้เทคโนโลยี, Data Science, IoT และการรู้เท่าทันดิจิทัล</p>
+                    <div class="tags">
+                        <span class="tag">#Coding</span>
+                        <span class="tag">#IoT</span>
+                        <span class="tag">#Data</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="education" class="content-section">
-            <div class="container">
-                <h2>ปัญญาประดิษฐ์เพื่อการเรียนการสอน (AI for Education)</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3><a href="https://ltic.kku.ac.th/what-is-generative-ai/"
-                                target="_blank">การเรียนรู้เฉพาะบุคคล (Personalized Learning)</a></h3>
-                        <p>AI สามารถวิเคราะห์จุดแข็งและจุดอ่อนของผู้เรียน
-                            เพื่อออกแบบบทเรียนและแบบฝึกหัดที่เหมาะสมกับแต่ละบุคคล
-                            ช่วยให้เรียนรู้ได้อย่างมีประสิทธิภาพสูงสุด</p>
+        <!-- Window: Lessons / Units -->
+        <div class="window" id="win-lessons" style="top: 15%; left: 30%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-lessons')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Lessons</div>
+            </div>
+            <div class="window-content">
+                <h2>บทเรียน (Units)</h2>
+                <div class="folder-grid">
+                    <div class="folder-item" onclick="openWindow('win-unit1')">
+                        <i class="fa-solid fa-folder-open folder-icon color-blue"></i>
+                        <span>บทที่ 1: App Dev</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>ผู้ช่วยสอนเสมือนจริง (Virtual Tutors)</h3>
-                        <p>Chatbots และ AI Tutors สามารถตอบคำถามและอธิบายบทเรียนได้ตลอด 24 ชั่วโมง
-                            ช่วยลดภาระของครูและช่วยให้นักเรียนเข้าถึงความช่วยเหลือได้ทันที</p>
+                    <div class="folder-item" onclick="openWindow('win-unit2')">
+                        <i class="fa-solid fa-folder-open folder-icon color-yellow"></i>
+                        <span>บทที่ 2: Data</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>การสร้างเนื้อหาอัจฉริยะ (Smart Content Creation)</h3>
-                        <p>ช่วยครูสร้างสื่อการสอน แผนการสอน และข้อสอบได้อย่างรวดเร็ว
-                            รวมถึงการแปลงเนื้อหาให้อยู่ในรูปแบบที่น่าสนใจ เช่น วิดีโอ หรือ Infographic</p>
+                    <div class="folder-item" onclick="openWindow('win-unit3')">
+                        <i class="fa-solid fa-folder-open folder-icon color-green"></i>
+                        <span>บทที่ 3: IoT</span>
                     </div>
-                    <div class="feature-card">
-                        <h3>การช่วยงานอัตโนมัติ (Administrative Automation)</h3>
-                        <p>ช่วยจัดการงานเอกสาร การเช็คชื่อ และการตรวจข้อสอบ
-                            ทำให้ครูมีเวลาโฟกัสกับการสอนและการดูแลนักเรียนมากขึ้น</p>
+                    <div class="folder-item" onclick="openWindow('win-unit4')">
+                        <i class="fa-solid fa-folder-open folder-icon color-red"></i>
+                        <span>บทที่ 4: Safety</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="history" class="content-section history-section">
-            <div class="container">
-                <h2>ประวัติปัญญาประดิษฐ์ (History of AI)</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">1950</div>
-                        <div class="timeline-content">
-                            <h3>จุดเริ่มต้น: Alan Turing</h3>
-                            <p>Alan Turing เสนอ "Turing Test" เพื่อทดสอบความฉลาดของเครื่องจักร เป็นจุดเริ่มต้นของแนวคิด
-                                AI</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">1956</div>
-                        <div class="timeline-content">
-                            <h3>กำเนิดคำว่า "AI"</h3>
-                            <p>การประชุม Dartmouth Conference เป็นที่แรกที่มีการบัญญัติศัพท์คำว่า "Artificial
-                                Intelligence" อย่างเป็นทางการ</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">1960s-1970s</div>
-                        <div class="timeline-content">
-                            <h3>ยุคเฟื่องฟูครั้งแรก (The Golden Years)</h3>
-                            <p>มีการพัฒนาโปรแกรมอย่าง ELIZA และ SHRDLU
-                                ที่แสดงให้เห็นถึงความสามารถในการแก้ปัญหาและเข้าใจภาษาเบื้องต้น</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">1980s</div>
-                        <div class="timeline-content">
-                            <h3>Expert Systems</h3>
-                            <p>ยุคของระบบผู้เชี่ยวชาญ (Expert Systems) ที่นำ AI มาใช้แก้ปัญหาเฉพาะทาง
-                                โดยใช้ฐานความรู้และกฎเกณฑ์</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">1997</div>
-                        <div class="timeline-content">
-                            <h3>Deep Blue ชนะ Kasparov</h3>
-                            <p>คอมพิวเตอร์ Deep Blue ของ IBM สามารถเอาชนะแชมป์โลกหมากรุก Garry Kasparov ได้เป็นครั้งแรก
-                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2010s</div>
-                        <div class="timeline-content">
-                            <h3>Deep Learning & Big Data</h3>
-                            <p>การเติบโตของ Neural Networks และ Deep Learning ทำให้ AI มีความก้าวหน้าอย่างก้าวกระโดด
-                                เช่น AlphaGo</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020s-Present</div>
-                        <div class="timeline-content">
-                            <h3>ยุคแห่ง Generative AI</h3>
-                            <p>การมาถึงของ Transformer models, GPT series, และ Midjourney ที่ทำให้ AI สามารถ
-                                "สร้างสรรค์" เนื้อหาได้เหมือนมนุษย์</p>
-                        </div>
-                    </div>
+        <!-- Window: Works -->
+        <div class="window" id="win-works" style="top: 20%; left: 40%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-works')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Student Works</div>
+            </div>
+            <div class="window-content">
+                <div class="empty-state">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>No files found.</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>&copy; 2026 Digital Generative AI History. All rights reserved.</p>
-    </footer>
+        <!-- Window: Contact -->
+        <div class="window" id="win-contact" style="top: 25%; left: 50%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-contact')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Contact</div>
+            </div>
+            <div class="window-content">
+                <ul class="contact-list">
+                    <li><i class="fa-brands fa-facebook"></i> Kru Com Sci</li>
+                    <li><i class="fa-brands fa-line"></i> @kru.comsci</li>
+                    <li><i class="fa-solid fa-envelope"></i> teacher@school.ac.th</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Window: Unit 1 App Dev -->
+        <div class="window" id="win-unit1" style="top: 15%; left: 35%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-unit1')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Unit 1: Application Development</div>
+            </div>
+            <div class="window-content">
+                <h2>บทที่ 1: การพัฒนาแอปพลิเคชัน</h2>
+                <p>เนื้อหาเกี่ยวกับการพัฒนาแอปพลิเคชันเบื้องต้น...</p>
+                <ul>
+                    <li>แนวคิดเชิงคำนวณ</li>
+                    <li>การวางแผนการพัฒนา</li>
+                    <li>เครื่องมือเขียนโปรแกรม (Thunkable, MIT App Inventor)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Window: Unit 2 Data -->
+        <div class="window" id="win-unit2" style="top: 18%; left: 38%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-unit2')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Unit 2: Data Science</div>
+            </div>
+            <div class="window-content">
+                <h2>บทที่ 2: วิทยาการข้อมูล</h2>
+                <p>เนื้อหาเกี่ยวกับการรวบรวมและวิเคราะห์ข้อมูล...</p>
+                <ul>
+                    <li>ประเภทของข้อมูล</li>
+                    <li>การทำความสะอาดข้อมูล</li>
+                    <li>การวิเคราะห์ข้อมูลเบื้องต้น</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Window: Unit 3 IoT -->
+        <div class="window" id="win-unit3" style="top: 21%; left: 41%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-unit3')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Unit 3: Internet of Things</div>
+            </div>
+            <div class="window-content">
+                <h2>บทที่ 3: อินเทอร์เน็ตของสรรพสิ่ง (IoT)</h2>
+                <p>เนื้อหาเกี่ยวกับอุปกรณ์ IoT และการประยุกต์ใช้...</p>
+                <ul>
+                    <li>องค์ประกอบของ IoT</li>
+                    <li>กรณีศึกษา Smart Home</li>
+                    <li>การเขียนโปรแกรมควบคุม Microcontroller</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Window: Unit 4 Safety -->
+        <div class="window" id="win-unit4" style="top: 24%; left: 44%; display: none;">
+            <div class="title-bar">
+                <div class="traffic-lights">
+                    <span class="close" onclick="closeWindow('win-unit4')"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="title">Unit 4: Cyber Safety</div>
+            </div>
+            <div class="window-content">
+                <h2>บทที่ 4: ความปลอดภัยในโลกดิจิทัล</h2>
+                <p>เนื้อหาเกี่ยวกับการรู้เท่าทันสื่อและการป้องกันภัยไบเบอร์...</p>
+                <ul>
+                    <li>Digital Footprint</li>
+                    <li>Cyberbullying</li>
+                    <li>กฎหมายคอมพิวเตอร์</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Dock (Bottom Icons) -->
+    <div class="dock-container hidden-initially">
+        <div class="dock">
+            <div class="dock-item" onclick="openWindow('win-home')" title="Home">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('win-lessons')" title="Lessons">
+                <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('win-works')" title="Works">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="dock-item" onclick="openWindow('win-contact')" title="Contact">
+                <i class="fa-solid fa-address-card"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Control -->
+    <audio id="bg-music" loop>
+        <source src="Kingdom%20Hearts%20OST%20Menu%20Theme.mp3" type="audio/mp3">
+    </audio>
+    <div id="music-btn" class="music-btn hidden-initially" title="Play/Pause Music">
+        <i class="fa-solid fa-volume-xmark"></i>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
