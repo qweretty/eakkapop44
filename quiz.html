@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบความรู้ - Digital Generative AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .quiz-section {
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: var(--glass-border);
+        }
+
+        .quiz-section h2 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .option-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .option-label input {
+            mrgin-right: 15px;
+            accent-color: var(--primary-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(6, 182, 212, 0.2);
+            border-radius: 15px;
+            border: 1px solid var(--accent-color);
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .correct {
+            color: #4ade80;
+        }
+
+        .incorrect {
+            color: #f87171;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">GenAI History</div>
+            <ul>
+                <li><a href="index.html#hero">หน้าแรก</a></li>
+                <li><a href="index.html#about">เกี่ยวกับ</a></li>
+                <li><a href="index.html#education">การศึกษา</a></li>
+                <li><a href="index.html#history">ประวัติ AI</a></li>
+                <li><a href="quiz.html" class="active">แบบทดสอบ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="quiz-container">
+        <h1>แบบทดสอบความรู้ Digital Generative AI</h1>
+        <p style="text-align: center; margin-bottom: 30px; color: #cbd5e1;">จำนวน 40 ข้อ (ข้อละ 1 คะแนน)</p>
+
+        <form id="quizForm">
+            <!-- Part 1: History of AI -->
+            <section class="quiz-section">
+                <h2>ส่วนที่ 1: ประวัติปัญญาประดิษฐ์ (History of AI)</h2>
+
+                <div class="question-item">
+                    <div class="question-text">1. ใครได้รับการยกย่องว่าเป็น "บิดาแห่งวิทยาการคอมพิวเตอร์"
+                        และเป็นผู้คิดค้น Turing Test?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q1" value="a"> A. Elon Musk</label>
+                        <label class="option-label"><input type="radio" name="q1" value="b"> B. Steve Jobs</label>
+                        <label class="option-label"><input type="radio" name="q1" value="c"> C. Alan Turing</label>
+                        <label class="option-label"><input type="radio" name="q1" value="d"> D. Bill Gates</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">2. คำว่า "Artificial Intelligence" (AI)
+                        ถูกบัญญัติขึ้นครั้งแรกในการประชุมใด?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q2" value="a"> A. Dartmouth
+                            Conference</label>
+                        <label class="option-label"><input type="radio" name="q2" value="b"> B. New York Summit</label>
+                        <label class="option-label"><input type="radio" name="q2" value="c"> C. Tech Crunch
+                            Disrupt</label>
+                        <label class="option-label"><input type="radio" name="q2" value="d"> D. London AI
+                            Meeting</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">3. โปรแกรม Chatbot ตัวแรกของโลกที่สร้างขึ้นในปี 1960s มีชื่อว่าอะไร?
+                    </div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q3" value="a"> A. SIRI</label>
+                        <label class="option-label"><input type="radio" name="q3" value="b"> B. ELIZA</label>
+                        <label class="option-label"><input type="radio" name="q3" value="c"> C. ALEXA</label>
+                        <label class="option-label"><input type="radio" name="q3" value="d"> D. SOPHIA</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">4. คอมพิวเตอร์เครื่องใดที่สามารถเอาชนะ Garry Kasparov
+                        แชมป์โลกหมากรุกได้ในปี 1997?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q4" value="a"> A. AlphaGo</label>
+                        <label class="option-label"><input type="radio" name="q4" value="b"> B. Watson</label>
+                        <label class="option-label"><input type="radio" name="q4" value="c"> C. Deep Blue</label>
+                        <label class="option-label"><input type="radio" name="q4" value="d"> D. ChatGPT</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">5. ยุค AI Winter หมายถึงเหตุการณ์ใด?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q5" value="a"> A. ยุคที่ AI
+                            พัฒนาเร็วมาก</label>
+                        <label class="option-label"><input type="radio" name="q5" value="b"> B.
+                            ยุคที่เงินทุนและความสนใจใน AI ลดลงอย่างมาก</label>
+                        <label class="option-label"><input type="radio" name="q5" value="c"> C. ยุคที่ AI
+                            ถูกใช้ในฤดูหนาว</label>
+                        <label class="option-label"><input type="radio" name="q5" value="d"> D.
+                            ยุคที่หุ่นยนต์ครองโลก</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">6. Generative AI แตกต่างจาก AI แบบดั้งเดิมอย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q6" value="a"> A.
+                            คิดเลขได้เร็วกว่า</label>
+                        <label class="option-label"><input type="radio" name="q6" value="b"> B. สามารถ "สร้าง"
+                            เนื้อหาใหม่ๆ ได้</label>
+                        <label class="option-label"><input type="radio" name="q6" value="c"> C.
+                            ใช้พลังงานน้อยกว่า</label>
+                        <label class="option-label"><input type="radio" name="q6" value="d"> D.
+                            ทำงานได้เฉพาะบนมือถือ</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">7. AlphaGo เป็น AI ที่ถูกสร้างขึ้นมาเพื่อเล่นเกมอะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q7" value="a"> A. หมากรุก (Chess)</label>
+                        <label class="option-label"><input type="radio" name="q7" value="b"> B. หมากล้อม (Go)</label>
+                        <label class="option-label"><input type="radio" name="q7" value="c"> C. โป๊กเกอร์</label>
+                        <label class="option-label"><input type="radio" name="q7" value="d"> D. ตอบคำถาม</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">8. ข้อใด *ไม่ใช่* ตัวอย่างของ Generative AI?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q8" value="a"> A. ChatGPT</label>
+                        <label class="option-label"><input type="radio" name="q8" value="b"> B. Midjourney</label>
+                        <label class="option-label"><input type="radio" name="q8" value="c"> C. เครื่องคิดเลข
+                            (Calculator)</label>
+                        <label class="option-label"><input type="radio" name="q8" value="d"> D. Gemini</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">9. เทคโนโลยีใดอยู่เบื้องหลังความสำเร็จของ AI ในยุคปัจจุบัน (2010s
+                        เป็นต้นมา)?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q9" value="a"> A. Deep Learning และ Neural
+                            Networks</label>
+                        <label class="option-label"><input type="radio" name="q9" value="b"> B. Vacuum Tubes</label>
+                        <label class="option-label"><input type="radio" name="q9" value="c"> C. Mechanical Gears</label>
+                        <label class="option-label"><input type="radio" name="q9" value="d"> D. Steam Engine</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">10. Turing Test ใช้ทดสอบอะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q10" value="a"> A.
+                            ความเร็วอินเทอร์เน็ต</label>
+                        <label class="option-label"><input type="radio" name="q10" value="b"> B.
+                            ความทนทานของฮาร์ดแวร์</label>
+                        <label class="option-label"><input type="radio" name="q10" value="c"> C.
+                            ความสามารถของเครื่องจักรในการแสดงพฤติกรรมฉลาดเทียบเท่ามนุษย์</label>
+                        <label class="option-label"><input type="radio" name="q10" value="d"> D.
+                            พลังงานแบตเตอรี่</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 2: AI for Education -->
+            <section class="quiz-section">
+                <h2>ส่วนที่ 2: ปัญญาประดิษฐ์เพื่อการเรียนการสอน (AI for Education)</h2>
+
+                <div class="question-item">
+                    <div class="question-text">11. Personalized Learning คืออะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q11" value="a"> A.
+                            การเรียนแบบกลุ่มใหญ่</label>
+                        <label class="option-label"><input type="radio" name="q11" value="b"> B.
+                            การเรียนรู้ที่ปรับให้เหมาะกับความต้องการรายบุคคล</label>
+                        <label class="option-label"><input type="radio" name="q11" value="c"> C.
+                            การเรียนโดยไม่มีครู</label>
+                        <label class="option-label"><input type="radio" name="q11" value="d"> D.
+                            การเรียนผ่านวิทยุ</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">12. ข้อใดเป็นประโยชน์ของ AI ในงานธุรการ (Administrative Tasks)?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q12" value="a"> A.
+                            ช่วยสอนแทนครูทั้งหมด</label>
+                        <label class="option-label"><input type="radio" name="q12" value="b"> B.
+                            ลดเวลาในการตรวจข้อสอบและจัดทำเอกสาร</label>
+                        <label class="option-label"><input type="radio" name="q12" value="c"> C.
+                            เพิ่มภาระงานให้ครู</label>
+                        <label class="option-label"><input type="radio" name="q12" value="d"> D.
+                            ทำให้อุปกรณ์แพงขึ้น</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">13. Virtual Tutor หรือผู้ช่วยสอนเสมือนจริง มีจุดเด่นคืออะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q13" value="a"> A. ปรึกษาได้ตลอด 24
+                            ชั่วโมง</label>
+                        <label class="option-label"><input type="radio" name="q13" value="b"> B.
+                            มีอารมณ์ฉุนเฉียว</label>
+                        <label class="option-label"><input type="radio" name="q13" value="c"> C.
+                            ต้องจ่ายเงินทุกครั้งที่ถาม</label>
+                        <label class="option-label"><input type="radio" name="q13" value="d"> D.
+                            ทำงานได้เฉพาะในโรงเรียน</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">14. Predictive Analytics ในการศึกษามีประโยชน์อย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q14" value="a"> A. ทำนายเลขหวย</label>
+                        <label class="option-label"><input type="radio" name="q14" value="b"> B.
+                            วิเคราะห์แนวโน้มเพื่อช่วยเหลือผู้เรียนที่อาจเรียนไม่ทัน</label>
+                        <label class="option-label"><input type="radio" name="q14" value="c"> C.
+                            จับผิดนักเรียนที่มาสาย</label>
+                        <label class="option-label"><input type="radio" name="q14" value="d"> D. ไม่มีประโยชน์</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">15. Adaptive Learning Platform ทำงานอย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q15" value="a"> A.
+                            ใช้เนื้อหาเหมือนกันทุกคน</label>
+                        <label class="option-label"><input type="radio" name="q15" value="b"> B.
+                            ปรับเนื้อหาและความยากง่ายตามความสามารถของผู้เรียน</label>
+                        <label class="option-label"><input type="radio" name="q15" value="c"> C.
+                            สุ่มเนื้อหามาแสดง</label>
+                        <label class="option-label"><input type="radio" name="q15" value="d"> D.
+                            บังคับให้เรียนตามเวลาที่กำหนดเท่านั้น</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">16. บทบาทของครูในยุค AI ควรเปลี่ยนไปในทิศทางใด?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q16" value="a"> A. เลิกสอนแล้วให้ AI
+                            สอนแทน</label>
+                        <label class="option-label"><input type="radio" name="q16" value="b"> B. เป็นผู้อำนวยความสะดวก
+                            (Facilitator) และโค้ช</label>
+                        <label class="option-label"><input type="radio" name="q16" value="c"> C. ควบคุมหุ่นยนต์</label>
+                        <label class="option-label"><input type="radio" name="q16" value="d"> D.
+                            ห้ามใช้เทคโนโลยี</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">17. AI ให้อะไรแก่ผู้เรียนนอกห้องเรียน?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q17" value="a"> A.
+                            การเข้าถึงแหล่งความรู้และการฝึกฝนได้ทุกที่ทุกเวลา</label>
+                        <label class="option-label"><input type="radio" name="q17" value="b"> B.
+                            การบ้านที่ยากขึ้น</label>
+                        <label class="option-label"><input type="radio" name="q17" value="c"> C. การบังคับเรียน</label>
+                        <label class="option-label"><input type="radio" name="q17" value="d"> D. ความเครียด</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">18. Smart Content Creation ช่วยครูได้อย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q18" value="a"> A.
+                            ช่วยสร้างแผนการสอนและสื่อการเรียนรู้ได้รวดเร็ว</label>
+                        <label class="option-label"><input type="radio" name="q18" value="b"> B. ช่วยซักผ้า</label>
+                        <label class="option-label"><input type="radio" name="q18" value="c"> C.
+                            ช่วยขับรถไปโรงเรียน</label>
+                        <label class="option-label"><input type="radio" name="q18" value="d"> D. ช่วยคุมสอบ</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">19. ข้อกังวลสำคัญในการใช้ AI ในการศึกษาคืออะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q19" value="a"> A.
+                            ความเป็นส่วนตัวของข้อมูล (Data Privacy)</label>
+                        <label class="option-label"><input type="radio" name="q19" value="b"> B. AI
+                            จะแย่งข้าวกิน</label>
+                        <label class="option-label"><input type="radio" name="q19" value="c"> C. ไฟฟ้าไม่พอ</label>
+                        <label class="option-label"><input type="radio" name="q19" value="d"> D.
+                            นักเรียนจะฉลาดเกินไป</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">20. เป้าหมายสูงสุดของการนำ AI มาใช้ในการศึกษาคือ?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q20" value="a"> A. เพื่อความเท่ห์</label>
+                        <label class="option-label"><input type="radio" name="q20" value="b"> B.
+                            ยกระดับคุณภาพการเรียนรู้ของผู้เรียนทุกคน</label>
+                        <label class="option-label"><input type="radio" name="q20" value="c"> C.
+                            ลดงบประมาณโรงเรียน</label>
+                        <label class="option-label"><input type="radio" name="q20" value="d"> D. สร้างหุ่นยนต์</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 3: Tools for Classroom -->
+            <section class="quiz-section">
+                <h2>ส่วนที่ 3: เครื่องมือ AI เพื่อสร้างห้องเรียน (AI Tools for Classroom)</h2>
+
+                <div class="question-item">
+                    <div class="question-text">21. เครื่องมือใดที่ใช้สร้างแบบทดสอบออนไลน์แบบ Gamification ได้ยอดนิยม?
+                    </div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q21" value="a"> A. Excel</label>
+                        <label class="option-label"><input type="radio" name="q21" value="b"> B. Kahoot! /
+                            Quizizz</label>
+                        <label class="option-label"><input type="radio" name="q21" value="c"> C. Photoshop</label>
+                        <label class="option-label"><input type="radio" name="q21" value="d"> D. Notepad</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">22. Feature "Magic School AI" หรือเครื่องมือคล้ายกัน ช่วยครูทำอะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q22" value="a"> A. เสกของ</label>
+                        <label class="option-label"><input type="radio" name="q22" value="b"> B.
+                            ช่วยเขียนแผนการสอนและใบงาน</label>
+                        <label class="option-label"><input type="radio" name="q22" value="c"> C. เล่นเกม</label>
+                        <label class="option-label"><input type="radio" name="q22" value="d"> D. ดูหนัง</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">23. Canva มีฟีเจอร์ AI ที่ช่วยในงานออกแบบห้องเรียน เรียกว่าอะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q23" value="a"> A. Magic Studio</label>
+                        <label class="option-label"><input type="radio" name="q23" value="b"> B. Paint Tool</label>
+                        <label class="option-label"><input type="radio" name="q23" value="c"> C. Draw Easy</label>
+                        <label class="option-label"><input type="radio" name="q23" value="d"> D. School Kit</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">24. หากต้องการสรุปบทเรียนยาวๆ ให้นักเรียนอ่านง่ายๆ ควรใช้เครื่องมือใด?
+                    </div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q24" value="a"> A. Calculator</label>
+                        <label class="option-label"><input type="radio" name="q24" value="b"> B. ChatGPT /
+                            Gemini</label>
+                        <label class="option-label"><input type="radio" name="q24" value="c"> C. Camera</label>
+                        <label class="option-label"><input type="radio" name="q24" value="d"> D. Maps</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">25. เครื่องมือ ClassDojo ช่วยในการจัดการห้องเรียนเรื่องใด?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q25" value="a"> A. การเสริมแรงพฤติกรรมบวก
+                            (Positive Reinforcement)</label>
+                        <label class="option-label"><input type="radio" name="q25" value="b"> B. การคำนวณภาษี</label>
+                        <label class="option-label"><input type="radio" name="q25" value="c"> C. การสร้างโมเดล 3
+                            มิติ</label>
+                        <label class="option-label"><input type="radio" name="q25" value="d"> D. การเขียนโปรแกรม</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">26. AI สามารถช่วยในการ "แปลภาษา"
+                        ในห้องเรียนที่มีความหลากหลายทางภาษาได้อย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q26" value="a"> A.
+                            ห้ามนักเรียนพูดภาษาอื่น</label>
+                        <label class="option-label"><input type="radio" name="q26" value="b"> B. แปลคำบรรยายสด (Live
+                            Caption/Translation)</label>
+                        <label class="option-label"><input type="radio" name="q26" value="c"> C. ไล่นักเรียนออก</label>
+                        <label class="option-label"><input type="radio" name="q26" value="d"> D.
+                            สอนแต่วิชาคณิตศาสตร์</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">27. Quizizz AI ช่วยครูสร้างข้อสอบอย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q27" value="a"> A.
+                            ครูต้องพิมพ์เองทุกตัวอักษร</label>
+                        <label class="option-label"><input type="radio" name="q27" value="b"> B.
+                            สร้างข้อสอบจากเนื้อหาหรือลิงก์ที่กำหนดให้ได้อัตโนมัติ</label>
+                        <label class="option-label"><input type="radio" name="q27" value="c"> C. จ้างคนอื่นทำ</label>
+                        <label class="option-label"><input type="radio" name="q27" value="d"> D. สุ่มมั่วๆ</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">28. การใช้ AI ตรวจจับการลอกการบ้าน (Plagiarism Checker)
+                        เป็นเครื่องมือประเภทใด?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q28" value="a"> A. Academic Integrity
+                            Tool</label>
+                        <label class="option-label"><input type="radio" name="q28" value="b"> B. Game Tool</label>
+                        <label class="option-label"><input type="radio" name="q28" value="c"> C. Design Tool</label>
+                        <label class="option-label"><input type="radio" name="q28" value="d"> D. Social Media</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">29. เครื่องมือใดเหมาะสำหรับการระดมสมอง (Brainstorming)
+                        ร่วมกันในห้องเรียนแบบดิจิทัล?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q29" value="a"> A. Padlet / Miro</label>
+                        <label class="option-label"><input type="radio" name="q29" value="b"> B. Calculator</label>
+                        <label class="option-label"><input type="radio" name="q29" value="c"> C. Dictionary</label>
+                        <label class="option-label"><input type="radio" name="q29" value="d"> D. Clock</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">30. ข้อดีของการใช้ AI Tools ในห้องเรียนคือ?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q30" value="a"> A.
+                            ทำให้นักเรียนเบื่อ</label>
+                        <label class="option-label"><input type="radio" name="q30" value="b"> B. เพิ่มการมีส่วนร่วม
+                            (Engagement) และความสนุกในการเรียน</label>
+                        <label class="option-label"><input type="radio" name="q30" value="c"> C. เปลืองเน็ต</label>
+                        <label class="option-label"><input type="radio" name="q30" value="d"> D.
+                            ทำให้ห้องเรียนเงียบ</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 4: Creative AI & Planning -->
+            <section class="quiz-section">
+                <h2>ส่วนที่ 4: AI เพื่อการสร้างสรรค์และวางแผน (Creative AI & Planning)</h2>
+
+                <div class="question-item">
+                    <div class="question-text">31. Prompts คืออะไรในการใช้งาน Generative AI?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q31" value="a"> A.
+                            การกดปุ่มเปิดเครื่อง</label>
+                        <label class="option-label"><input type="radio" name="q31" value="b"> B. ข้อความคำสั่งที่ป้อนให้
+                            AI ทำงาน</label>
+                        <label class="option-label"><input type="radio" name="q31" value="c"> C. ชื่อโปรแกรม</label>
+                        <label class="option-label"><input type="radio" name="q31" value="d"> D. สายชาร์จ</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">32. เครื่องมือใดโดดเด่นเรื่องการสร้าง "ภาพ" จากข้อความ (Text-to-Image)?
+                    </div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q32" value="a"> A. Midjourney /
+                            DALL-E</label>
+                        <label class="option-label"><input type="radio" name="q32" value="b"> B. Word</label>
+                        <label class="option-label"><input type="radio" name="q32" value="c"> C. Excel</label>
+                        <label class="option-label"><input type="radio" name="q32" value="d"> D. PowerPoint</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">33. อินโฟกราฟิก (Infographic) ที่ดีควรมีลักษณะอย่างไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q33" value="a"> A.
+                            มีแต่ตัวหนังสือเยอะๆ</label>
+                        <label class="option-label"><input type="radio" name="q33" value="b"> B. ย่อยข้อมูลให้เข้าใจง่าย
+                            เน้นภาพสื่อความหมาย</label>
+                        <label class="option-label"><input type="radio" name="q33" value="c"> C. ใช้สีดำล้วน</label>
+                        <label class="option-label"><input type="radio" name="q33" value="d"> D. ข้อมูลมั่ว</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">34. การให้ ChatGPT ช่วยเขียน "แผนการสอน"
+                        ควรทำอย่างไรถึงจะได้ผลลัพธ์ที่ดี?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q34" value="a"> A. พิมพ์คำว่า "แผนการสอน"
+                            คำเดียว</label>
+                        <label class="option-label"><input type="radio" name="q34" value="b"> B. ระบุรายละเอียดบริบท
+                            ระดับชั้น หัวข้อ และวัตถุประสงค์ให้ชัดเจน</label>
+                        <label class="option-label"><input type="radio" name="q34" value="c"> C.
+                            ไม่ต้องบอกอะไรเลย</label>
+                        <label class="option-label"><input type="radio" name="q34" value="d"> D. ใช้ภาษาต่างดาว</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">35. เครื่องมือ Presentation AI (เช่น Gamma) ช่วยทำอะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q35" value="a"> A.
+                            สร้างสไลด์นำเสนอพร้อมเนื้อหาและรูปภาพให้อัตโนมัติ</label>
+                        <label class="option-label"><input type="radio" name="q35" value="b"> B. ช่วยพิมพ์ดีด</label>
+                        <label class="option-label"><input type="radio" name="q35" value="c"> C. ช่วยซ่อมคอม</label>
+                        <label class="option-label"><input type="radio" name="q35" value="d"> D. ช่วยอัดเสียง</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">36. จริยธรรมในการใช้ภาพจาก AI (AI Ethics) ข้อใดถูกต้อง?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q36" value="a"> A.
+                            แอบอ้างว่าเป็นผลงานที่วาดเองด้วยมือ 100%</label>
+                        <label class="option-label"><input type="radio" name="q36" value="b"> B.
+                            ควรระบุหรือเปิดเผยว่าใช้ AI ในการสร้างสรรค์เมื่อจำเป็น</label>
+                        <label class="option-label"><input type="radio" name="q36" value="c"> C. ขโมยผลงานคนอื่นมาให้ AI
+                            ทำซ้ำ</label>
+                        <label class="option-label"><input type="radio" name="q36" value="d"> D. ใช้ภาพ Deepfake
+                            ทำร้ายผู้อื่น</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">37. การใช้ AI ช่วยเขียนโค้ด (Coding) มีประโยชน์อย่างไรในการสอน?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q37" value="a"> A.
+                            ช่วยอธิบายการทำงานของโค้ดและหาจุดผิด (Bug)</label>
+                        <label class="option-label"><input type="radio" name="q37" value="b"> B.
+                            ทำให้นักเรียนไม่ต้องเรียนรู้อะไรเลย</label>
+                        <label class="option-label"><input type="radio" name="q37" value="c"> C. เขียนไวรัส</label>
+                        <label class="option-label"><input type="radio" name="q37" value="d"> D.
+                            ทำลายคอมพิวเตอร์</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">38. ข้อดีของการใช้อินโฟกราฟิกในการสอนคือ?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q38" value="a"> A.
+                            ดึงดูดความสนใจและจดจำได้ง่ายกว่าข้อความล้วน</label>
+                        <label class="option-label"><input type="radio" name="q38" value="b"> B.
+                            ประหยัดหมึกพิมพ์</label>
+                        <label class="option-label"><input type="radio" name="q38" value="c"> C. ทำยาก</label>
+                        <label class="option-label"><input type="radio" name="q38" value="d"> D. ไม่มีข้อดี</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">39. AI Hallucination คืออะไร?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q39" value="a"> A. AI ป่วย</label>
+                        <label class="option-label"><input type="radio" name="q39" value="b"> B. อาการที่ AI
+                            ให้ข้อมูลที่ผิดหรือสร้างเรื่องเท็จขึ้นมาอย่างมั่นใจ</label>
+                        <label class="option-label"><input type="radio" name="q39" value="c"> C. AI หลับ</label>
+                        <label class="option-label"><input type="radio" name="q39" value="d"> D. AI ฝัน</label>
+                    </div>
+                </div>
+
+                <div class="question-item">
+                    <div class="question-text">40. กุญแจสำคัญในการทำงานร่วมกับ AI ในอนาคตคือ?</div>
+                    <div class="options">
+                        <label class="option-label"><input type="radio" name="q40" value="a"> A.
+                            การรู้เท่าทันและใช้เป็นเครื่องมือช่วยขยายขีดความสามารถมนุษย์</label>
+                        <label class="option-label"><input type="radio" name="q40" value="b"> B. ยอมแพ้ให้กับ AI</label>
+                        <label class="option-label"><input type="radio" name="q40" value="c"> C.
+                            เลิกใช้เทคโนโลยี</label>
+                        <label class="option-label"><input type="radio" name="q40" value="d"> D.
+                            ย้ายไปอยู่ดาวอังคาร</label>
+                    </div>
+                </div>
+            </section>
+
+            <button type="button" class="submit-btn" onclick="checkAnswers()">ส่งคำตอบ (Submit)</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Digital Generative AI History. All rights reserved.</p>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>
